@@ -4,21 +4,23 @@ export interface ConfigType {
   jsError?: boolean
   resourceError?: boolean,
   promiseError?: boolean,
-  ajaxError?: boolean,
+  httpError?: boolean,
   vueError?: boolean,
   consoleError?: boolean,
   scriptError?: boolean,
-  staticError?: boolean
+  staticError?: boolean,
+  monitorTiming?: boolean
 }
 
 export const defaultConfig: ConfigType = {
   url: '',
-  jsError: false,
-  resourceError: false,
-  promiseError: false,
-  ajaxError: false,
+  jsError: true,
+  resourceError: true,
+  promiseError: true,
+  httpError: true,
   vueError: false,
-  consoleError: false,
-  scriptError: false,
-  staticError: false
+  monitorTiming: true
+  // consoleError: false,
+  // scriptError: false,
+  // staticError: false
 }

@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@u/*": ["src/utils/*"]
+      "@u/*": ["src/utils/*"],
+      "@l/*": ["src/libs/*"]
     }
   },
   "include": ["src"]

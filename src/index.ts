@@ -1,8 +1,11 @@
 import { defaultConfig, type ConfigType  } from '@u/config'
 import { isValidUrl } from '@u/tools'
-class Moniter {
+import { observerJsError } from '@l/jsError'
+export { VueMonitorPlugin } from '@l/vueError'
+import { observerTiming } from '@l/moniterTiming'
+export class Moniter {
   config: ConfigType = defaultConfig
-  constructor(parameters) {
+  constructor() {
     
   }
   init(config: ConfigType) {
@@ -14,7 +17,15 @@ class Moniter {
     const { url } = this.config
     if (!url) throw new Error('report url is required')
     if (!isValidUrl(url)) throw new Error('report url is invalid')
+    if (this.config.jsError) {
+      observerJsError(this)
+    } else if (this.config.monitorTiming) {
+      observerTiming(this)
+    }
+  }
+  send(data) {
+    console.log(data)
   }
 }
 
-export default Moniter
+export const moniter = new Moniter

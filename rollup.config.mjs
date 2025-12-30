@@ -29,7 +29,8 @@ export default {
     alias({
       entries: [
         { find: '@', replacement: resolve(__dirname, 'src') },
-        { find: '@u', replacement: resolve(__dirname, 'src/utils') }
+        { find: '@u', replacement: resolve(__dirname, 'src/utils') },
+        { find: '@l', replacement: resolve(__dirname, 'src/libs') }
       ]
     }),
     nodeResolve({ extensions: ['.ts', '.js'] }),
