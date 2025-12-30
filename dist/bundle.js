@@ -12,7 +12,9 @@
 
   const VueMonitorPlugin={install(app){app.config.errorHandler=(e,vm)=>{moniter.send({kind:"stability",type:"error",errorType:"vueError",message:e.message,tagName:vm.htmlType??"",stack:getLines(e.stack),className:vm.$el.className,id:vm.$el.id});};}};
 
-  class Moniter{init(config){if(!config)throw new Error("config is required");this.config={...defaultConfig,...config};this.initMonitor();}initMonitor(){const{url}=this.config;if(!url)throw new Error("report url is required");if(!isValidUrl(url))throw new Error("report url is invalid");if(this.config.jsError){observerJsError(this);}else if(this.config.monitorTiming);}send(data){console.log(data);}constructor(){this.config=defaultConfig;}}const moniter=new Moniter;
+  function observerTiming(instance){console.log(performance.getEntriesByType("navigation"));}
+
+  class Moniter{init(config){if(!config)throw new Error("config is required");this.config={...defaultConfig,...config};this.initMonitor();}initMonitor(){const{url}=this.config;if(!url)throw new Error("report url is required");if(!isValidUrl(url))throw new Error("report url is invalid");if(this.config.jsError){observerJsError(this);}else if(this.config.monitorTiming){observerTiming();}}send(data){console.log(data);}constructor(){this.config=defaultConfig;}}const moniter=new Moniter;
 
   exports.Moniter = Moniter;
   exports.VueMonitorPlugin = VueMonitorPlugin;
